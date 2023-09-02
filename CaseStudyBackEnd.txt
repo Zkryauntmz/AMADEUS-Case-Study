@@ -1,0 +1,46 @@
+// QUESTION 1:
+ pm.test("Status code is 200 from GET request", function () {
+    pm.response.to.have.status(200);
+});
+
+
+// QUESTION 2 
+pm.test("Response status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response is an object with data property", function () {
+    pm.expect(pm.response.json()).to.be.an('object').that.has.property('data');
+});
+
+pm.test("Each element in the data array has an id that is a number", function () {
+    pm.response.json().data.forEach(function (item) {
+        pm.expect(item.id).to.be.a('number');
+    });
+});
+
+pm.test("Each element in the data array has a from that is a string", function () {
+    pm.response.json().data.forEach(function (item) {
+        pm.expect(item.from).to.be.a('string');
+    });
+});
+
+pm.test("Each element in the data array has a to that is a string", function () {
+    pm.response.json().data.forEach(function (item) {
+        pm.expect(item.to).to.be.a('string');
+    });
+});
+
+pm.test("Each element in the data array has a date that is a string", function () {
+    pm.response.json().data.forEach(function (item) {
+        pm.expect(item.date).to.be.a('string');
+    });
+});
+
+
+
+// QUESTION 3:
+
+ pm.test("Content-Type header is application/json", () => {
+  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');
+});
